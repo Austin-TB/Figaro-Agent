@@ -1,13 +1,7 @@
 """Simple Question Fetcher and Display App"""
-import os
 import gradio as gr
-import requests
-import random
 from langchain_core.messages import HumanMessage
 from my_agent import build_agent
-
-# Constants
-DEFAULT_API_URL = "https://agents-course-unit4-scoring.hf.space"
 
 class BasicAgent:
     """A langgraph agent."""
@@ -25,37 +19,6 @@ class BasicAgent:
         answer = messages['messages'][-1].content
         return answer[14:]
 
-def get_random_question():
-    """
-    Fetch a random question from the API and return it.
-    """
-    api_url = DEFAULT_API_URL
-    questions_url = f"{api_url}/random-question"
-
-    try:
-        response = requests.get(questions_url, timeout=15)
-        response.raise_for_status()
-        questions_data = response.json()
-        
-        if not questions_data:
-            return ""
-        question = questions_data['question']
-        task_id = questions_data['task_id']
-        file_name = questions_data['file_name']
-        if file_name:
-            file_url = f"{api_url}/files/{task_id}"
-            response = requests.get(file_url, timeout=15)
-            response.raise_for_status()
-            file_content = response.content
-            file_path = f"temp_file_{file_name}"
-            with open(file_path, 'wb') as f:
-                f.write(file_content)
-            return f"{question}\n---\n---\nfile_path:{file_path}"
-        return f"{question}\n---\n---\nfile_path:None"
-    except Exception as e:
-        print(f"Error fetching questions: {e}")
-        return []
-
 def agent_response(message, _):
     agent = BasicAgent()
     response = agent(message)
@@ -65,13 +28,6 @@ def agent_response(message, _):
     except:
         yield response
 
-current_question = get_random_question()
-
-def fetch_new_question():
-    global current_question
-    print("Fetching new question...")
-    current_question = get_random_question()
-
 with gr.Blocks() as demo:
     gr.ChatInterface(
         agent_response,
@@ -80,13 +36,11 @@ with gr.Blocks() as demo:
         title="Question Chat",
         description="Making it work",
         theme="soft",
-        examples=[[current_question]],
+        examples=[["Explain this youtube video: https://www.youtube.com/watch?v=Qw6b1a2d3e4"]["what is the Capital of France?"],],
         cache_examples=False,
         type="messages"
     )
-    new_question_button = gr.Button("Fetch New Question")
-    new_question_button.click(fetch_new_question, inputs=[], outputs=[])
 
 if __name__ == "__main__":
-    print("\n" + "-"*30 + "Test Agent" + "-"*30)
+    print("\n" + "-"*30 + "Figaro" + "-"*30)
     demo.launch(debug=True, share=False)
