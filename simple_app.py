@@ -33,10 +33,10 @@ with gr.Blocks() as demo:
         agent_response,
         chatbot=gr.Chatbot(height=600, type='messages'),
         textbox=gr.Textbox(placeholder="Ask a question...", container=False, scale=7),
-        title="Question Chat",
+        title="Figaro",
         description="Making it work",
         theme="soft",
-        examples=[["Explain this youtube video: https://www.youtube.com/watch?v=Qw6b1a2d3e4"]["what is the Capital of France?"],],
+        examples=[["Explain this youtube video: https://www.youtube.com/watch?v=Qw6b1a2d3e4"],["what is the Capital of France?"]],
         cache_examples=False,
         type="messages"
     )
