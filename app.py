@@ -3,6 +3,8 @@ import gradio as gr
 from langchain_core.messages import HumanMessage, AIMessage
 from my_agent import build_agent
 
+langchain_formatted_history = []
+
 class BasicAgent:
     """A langgraph agent."""
     def __init__(self):
@@ -12,9 +14,6 @@ class BasicAgent:
     def __call__(self, conversation_messages: list) -> str:
         print(f"Agent received {len(conversation_messages)} messages.")
         if conversation_messages:
-            # Optional: logging for checking message structure
-            # print(f"First message content (type: {type(conversation_messages[0])}): {str(conversation_messages[0].content)[:50]}")
-            # print(f"Last message content (type: {type(conversation_messages[-1])}): {str(conversation_messages[-1].content)[:50]}")
             pass
 
         response_data = self.graph.invoke({"messages": conversation_messages})
@@ -27,23 +26,9 @@ class BasicAgent:
 
 def agent_response(current_user_message: str, history_from_gradio: list):
     agent = BasicAgent()
-
-    langchain_formatted_history = []
-    for entry in history_from_gradio:
-        role = entry.get("role")
-        content = entry.get("content")
-        if role == "user":
-            langchain_formatted_history.append(HumanMessage(content=content))
-        elif role == "assistant":
-            langchain_formatted_history.append(AIMessage(content=content))
-        else:
-            print(f"Warning: Unknown role in history entry: {entry}")
-            langchain_formatted_history.append(HumanMessage(content=str(content)))
-
-    # Add the current user's message
     langchain_formatted_history.append(HumanMessage(content=current_user_message))
-
     response_content = agent(langchain_formatted_history)
+    langchain_formatted_history.append(AIMessage(content=response_content))
     yield response_content
 
 with gr.Blocks() as demo:
