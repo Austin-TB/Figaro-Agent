@@ -1,6 +1,6 @@
 """Simple Question Fetcher and Display App"""
 import gradio as gr
-from langchain_core.messages import HumanMessage
+from langchain_core.messages import HumanMessage, AIMessage
 from my_agent import build_agent
 
 class BasicAgent:
@@ -9,21 +9,42 @@ class BasicAgent:
         print("BasicAgent initialized.")
         self.graph = build_agent()
 
-    def __call__(self, question: str) -> str:
-        print(f"Agent received question (first 50 chars): {question[:50]}...")
-        # Wrap the question in a HumanMessage from langchain_core
-        messages = [HumanMessage(content=question)]
-        messages = self.graph.invoke({"messages": messages})
-        for m in messages["messages"]:
+    def __call__(self, conversation_messages: list) -> str:
+        print(f"Agent received {len(conversation_messages)} messages.")
+        if conversation_messages:
+            # Optional: logging for checking message structure
+            # print(f"First message content (type: {type(conversation_messages[0])}): {str(conversation_messages[0].content)[:50]}")
+            # print(f"Last message content (type: {type(conversation_messages[-1])}): {str(conversation_messages[-1].content)[:50]}")
+            pass
+
+        response_data = self.graph.invoke({"messages": conversation_messages})
+        
+        for m in response_data["messages"]:
             m.pretty_print()
-        answer = messages['messages'][-1].content
+            
+        answer = response_data['messages'][-1].content
         return answer
 
-def agent_response(message, history):
+def agent_response(current_user_message: str, history_from_gradio: list):
     agent = BasicAgent()
-    response = agent(history + [message])
-    # print(response)
-    yield response
+
+    langchain_formatted_history = []
+    for entry in history_from_gradio:
+        role = entry.get("role")
+        content = entry.get("content")
+        if role == "user":
+            langchain_formatted_history.append(HumanMessage(content=content))
+        elif role == "assistant":
+            langchain_formatted_history.append(AIMessage(content=content))
+        else:
+            print(f"Warning: Unknown role in history entry: {entry}")
+            langchain_formatted_history.append(HumanMessage(content=str(content)))
+
+    # Add the current user's message
+    langchain_formatted_history.append(HumanMessage(content=current_user_message))
+
+    response_content = agent(langchain_formatted_history)
+    yield response_content
 
 with gr.Blocks() as demo:
     gr.ChatInterface(
