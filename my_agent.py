@@ -13,6 +13,7 @@ from langchain_community.tools.tavily_search import TavilySearchResults
 from langchain_community.document_loaders import WebBaseLoader, YoutubeLoader
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
 import pandas as pd
 import pytesseract
 from python_interpreter import run_python_script
@@ -250,11 +251,19 @@ tools =[
     retriever_tool
 ]
 
-def build_agent(provider: str = "qwen"):
+def build_agent(provider: str = "google"):
     if provider == "qwen":
         llm = ChatGroq(model="qwen-qwq-32b", temperature=0)
     elif provider == "llama":
         llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+    elif provider == "google":
+        llm = ChatGoogleGenerativeAI(
+                model="gemini-2.0-flash",
+                temperature=0,
+                max_tokens=None,
+                timeout=None,
+                max_retries=2,  
+            )
 
     llm_with_tools = llm.bind_tools(tools)
     with open("system_prompt.txt", "r") as f:

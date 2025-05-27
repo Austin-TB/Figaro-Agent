@@ -17,16 +17,13 @@ class BasicAgent:
         for m in messages["messages"]:
             m.pretty_print()
         answer = messages['messages'][-1].content
-        return answer[14:]
+        return answer
 
-def agent_response(message, _):
+def agent_response(message, history):
     agent = BasicAgent()
-    response = agent(message)
+    response = agent(history + [message])
     # print(response)
-    try:
-        yield response.split('FINAL ANSWER:')[1]
-    except:
-        yield response
+    yield response
 
 with gr.Blocks() as demo:
     gr.ChatInterface(
