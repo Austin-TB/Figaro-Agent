@@ -24,3 +24,4 @@ youtube-transcript-api
 faiss-cpu
 sentence-transformers
 huggingface-hub
+pymupdf
