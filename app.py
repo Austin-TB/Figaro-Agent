@@ -24,7 +24,7 @@ class BasicAgent:
         answer = response_data['messages'][-1].content
         return answer
 
-def agent_response(current_user_message: str, history_from_gradio: list):
+def agent_response(current_user_message: str, _):
     agent = BasicAgent()
     langchain_formatted_history.append(HumanMessage(content=current_user_message))
     response_content = agent(langchain_formatted_history)
