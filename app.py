@@ -2,6 +2,7 @@
 import gradio as gr
 from langchain_core.messages import HumanMessage, AIMessage
 from my_agent import build_agent
+import os
 
 langchain_formatted_history = []
 
@@ -46,4 +47,7 @@ with gr.Blocks() as demo:
 
 if __name__ == "__main__":
     print("\n" + "-"*30 + "Figaro" + "-"*30)
-    demo.launch(debug=True, share=False)
+    server_name = os.getenv("GRADIO_SERVER_NAME", "0.0.0.0")
+    server_port = int(os.getenv("GRADIO_SERVER_PORT", "7860"))
+    enable_debug = os.getenv("GRADIO_DEBUG", "False").lower() == "true"
+    demo.launch(server_name=server_name, server_port=server_port, debug=enable_debug, share=False)
