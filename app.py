@@ -26,23 +26,24 @@ class BasicAgent:
         return answer
 
 def agent_response(current_user_message: str, _):
-    agent = BasicAgent()
-    langchain_formatted_history.append(HumanMessage(content=current_user_message))
-    response_content = agent(langchain_formatted_history)
-    langchain_formatted_history.append(AIMessage(content=response_content))
-    yield response_content
+    # agent = BasicAgent()
+    # langchain_formatted_history.append(HumanMessage(content=current_user_message))
+    # response_content = agent(langchain_formatted_history)
+    # langchain_formatted_history.append(AIMessage(content=response_content))
+    # yield response_content
+    yield "Hello"
 
-with gr.Blocks() as demo:
+with gr.Blocks(css_paths="./style.css") as demo:
     gr.ChatInterface(
         agent_response,
-        chatbot=gr.Chatbot(height=600, type='messages'),
-        textbox=gr.Textbox(placeholder="Ask a question...", container=False, scale=7),
+        chatbot=gr.Chatbot(height=600, type='messages', elem_id="chatbot-container"),
+        textbox=gr.Textbox(placeholder="Ask a question...", container=False, scale=7, elem_id="textbox-container"),
         title="Figaro",
         description="Making it work",
-        theme="soft",
         examples=[["Explain this youtube video: https://www.youtube.com/watch?v=Qw6b1a2d3e4"],["what is the Capital of France?"]],
         cache_examples=False,
-        type="messages"
+        type="messages",
+        # additional_inputs=[gr.UploadButton(label="Upload File", file_types=["any"])],
     )
 
 if __name__ == "__main__":
