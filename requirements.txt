@@ -1,5 +1,7 @@
 gradio
 gradio[oauth]
+fastapi
+uvicorn[standard]
 requests
 langgraph
 langchain_community

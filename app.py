@@ -26,12 +26,12 @@ class BasicAgent:
         return answer
 
 def agent_response(current_user_message: str, _):
-    # agent = BasicAgent()
-    # langchain_formatted_history.append(HumanMessage(content=current_user_message))
-    # response_content = agent(langchain_formatted_history)
-    # langchain_formatted_history.append(AIMessage(content=response_content))
-    # yield response_content
-    yield "Hello"
+    agent = BasicAgent()
+    langchain_formatted_history.append(HumanMessage(content=current_user_message))
+    response_content = agent(langchain_formatted_history)
+    langchain_formatted_history.append(AIMessage(content=response_content))
+    yield response_content
+    # yield "Hello"
 
 with gr.Blocks(css_paths="./style.css") as demo:
     gr.ChatInterface(
