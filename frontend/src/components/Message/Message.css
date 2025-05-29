@@ -1,28 +1,42 @@
 .message {
+  margin: 0 auto 0;
   max-width: 70%;
-  padding: 0.75rem;
-  border-radius: 0.5rem;
 }
 
 .message--user {
-  align-self: flex-end;
-  background: #007bff;
-  color: white;
+  align-self: flex-center;
 }
 
 .message--assistant {
-  align-self: flex-start;
-  background: #fff;
-  color: #333;
-  border: 1px solid #e0e0e0;
+  align-self: flex-center;
 }
 
 .message__header {
   font-size: 0.8rem;
-  opacity: 0.7;
-  margin-bottom: 0.25rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.message--user .message__header {
+  text-align: right;
 }
 
 .message__content {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #333;
+}
+
+.message--user .message__content {
+  background: #90D4AA;
+  color: #333;
+}
+
+.message--assistant .message__content {
+  background: white;
 } 

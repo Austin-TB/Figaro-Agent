@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  background: #ffd4d4;
+  background: #f0f0f0;
 }
 
 #root {
@@ -21,4 +21,5 @@ body {
   display: flex;
   flex-direction: column;
   font-family: system-ui, sans-serif;
+  background: #f0f0f0;
 }

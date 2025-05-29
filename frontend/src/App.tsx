@@ -1,5 +1,5 @@
 import './App.css';
-import { Header, MessageList, ChatInput } from './components';
+import { MessageList, ChatInput } from './components';
 import { useChat } from './hooks/useChat';
 
 function App() {
@@ -7,7 +7,6 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
       <MessageList messages={messages} loading={loading} />
       <ChatInput 
         input={input}

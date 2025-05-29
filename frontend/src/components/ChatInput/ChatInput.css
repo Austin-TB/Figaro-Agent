@@ -1,22 +1,36 @@
 .chat-input {
-  padding: 1rem;
-  background: #fff;
-  border-top: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  background: transparent;
 }
 
 .chat-input__container {
   display: flex;
-  gap: 0.5rem;
+  align-items: flex-end;
+  gap: 0.75rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 2rem;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .chat-input__textarea {
   flex: 1;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
   resize: none;
-  min-height: 2.5rem;
+  min-height: 1.5rem;
+  max-height: 150px;
   font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  line-height: 1.4;
+}
+
+.chat-input__textarea::placeholder {
+  color: #999;
 }
 
 .chat-input__textarea:disabled {
@@ -25,13 +39,18 @@
 }
 
 .chat-input__button {
-  padding: 0.75rem 1.5rem;
-  background: #007bff;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: #90D4AA;
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 50%;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .chat-input__button:disabled {
@@ -40,5 +59,6 @@
 }
 
 .chat-input__button:hover:not(:disabled) {
-  background: #0056b3;
+  background: #7BC499;
+  transform: scale(1.05);
 } 
