@@ -1,0 +1,135 @@
+.chat-input-container {
+  border-top: 1px solid #475569;
+  background-color: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.example-prompts {
+  padding: 1rem 1.5rem;
+}
+
+.example-prompts-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.example-prompt-button {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  background-color: #374151;
+  border-radius: 9999px;
+  color: #94a3b8;
+  border: 1px solid #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.example-prompt-button:hover:not(:disabled) {
+  background-color: rgba(14, 165, 233, 0.2);
+  color: #e2e8f0;
+  border-color: rgba(14, 165, 233, 0.5);
+}
+
+.example-prompt-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.input-form-container {
+  padding: 0 1.5rem 1.5rem;
+}
+
+.input-form {
+  position: relative;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: end;
+  background-color: #374151;
+  border-radius: 1rem;
+  border: 1px solid #475569;
+  transition: border-color 0.2s;
+}
+
+.input-wrapper:focus-within {
+  border-color: rgba(14, 165, 233, 0.5);
+}
+
+.input-textarea {
+  flex: 1;
+  background: transparent;
+  color: #e2e8f0;
+  padding: 1rem;
+  padding-right: 3rem;
+  border-radius: 1rem;
+  resize: none;
+  border: none;
+  outline: none;
+  min-height: 3.5rem;
+  max-height: 7.5rem;
+  font-family: inherit;
+}
+
+.input-textarea::placeholder {
+  color: #94a3b8;
+}
+
+.input-textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.send-button {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.send-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.5);
+}
+
+.send-button.enabled {
+  background-color: #0ea5e9;
+  color: white;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+  transform: scale(1);
+}
+
+.send-button.enabled:hover {
+  background-color: rgba(14, 165, 233, 0.8);
+  transform: scale(1.05);
+}
+
+.send-button.disabled {
+  background-color: #374151;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.input-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.25rem;
+}
+
+.input-help-text {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.character-count {
+  font-size: 0.75rem;
+  color: #94a3b8;
+} 
