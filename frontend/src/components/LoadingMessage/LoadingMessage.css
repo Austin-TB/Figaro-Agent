@@ -1,0 +1,14 @@
+.loading-message {
+  align-self: flex-start;
+  max-width: 70%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  color: #666;
+}
+
+.loading-message__header {
+  font-size: 0.8rem;
+  margin-bottom: 0.25rem;
+} 
