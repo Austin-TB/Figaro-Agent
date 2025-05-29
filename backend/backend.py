@@ -69,16 +69,17 @@ async def root():
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     try:
-        # Convert conversation history to LangChain format
-        langchain_history = convert_to_langchain_messages(request.conversation_history)
+        # # Convert conversation history to LangChain format
+        # langchain_history = convert_to_langchain_messages(request.conversation_history)
         
-        # Add the new user message
-        langchain_history.append(HumanMessage(content=request.message))
+        # # Add the new user message
+        # langchain_history.append(HumanMessage(content=request.message))
         
-        # Get response from agent
-        response_content = agent(langchain_history)
+        # # Get response from agent
+        # response_content = agent(langchain_history)
         
-        return ChatResponse(response=response_content)
+        # return ChatResponse(response=response_content)
+        return ChatResponse(response="This is a placeholder response.")
         
     except Exception as e:
         print(f"Error in chat endpoint: {str(e)}")

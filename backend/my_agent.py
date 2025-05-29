@@ -266,7 +266,12 @@ def build_agent(provider: str = "google"):
             )
 
     llm_with_tools = llm.bind_tools(tools)
-    with open("system_prompt.txt", "r") as f:
+    
+    # Get the directory where this script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    system_prompt_path = os.path.join(script_dir, "system_prompt.txt")
+    
+    with open(system_prompt_path, "r") as f:
         system_prompt = f.read()
     sys_msg = SystemMessage(content = system_prompt)
 
@@ -296,10 +301,10 @@ def build_agent(provider: str = "google"):
     agent = graph.compile()
     return agent
 
-if __name__ == "__main__":
-    question = "What is the latest news on Joe Biden?"
-    messages = [HumanMessage(content=question)]
-    agent = build_agent()
-    messages = agent.invoke({"messages": messages})
-    for m in messages["messages"]:
-        m.pretty_print()
+# if __name__ == "__main__":
+#     question = "What is the latest news on Joe Biden?"
+#     messages = [HumanMessage(content=question)]
+#     agent = build_agent()
+#     messages = agent.invoke({"messages": messages})
+#     for m in messages["messages"]:
+#         m.pretty_print()

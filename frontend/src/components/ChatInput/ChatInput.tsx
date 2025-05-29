@@ -21,7 +21,7 @@ export const ChatInput = ({ input, loading, onInputChange, onSendMessage }: Chat
         <textarea
           value={input}
           onChange={(e) => onInputChange(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
           placeholder="Type your message..."
           disabled={loading}
           className="chat-input__textarea"
