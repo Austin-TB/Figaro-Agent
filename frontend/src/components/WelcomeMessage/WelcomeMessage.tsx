@@ -1,11 +1,17 @@
 import './WelcomeMessage.css';
 
-export const WelcomeMessage = () => {
+interface WelcomeMessageProps {
+  noMessages: boolean;
+}
+
+export const WelcomeMessage = ({ noMessages }: WelcomeMessageProps) => {
+  const isBarMode = !noMessages;
+
   return (
-    <div className="welcome-message">
-      <div className="welcome-bubble">
-        <div className="welcome-title">Hi I'm Figaro.</div>
-        <div className="welcome-subtitle">Ask me Anything!</div>
+    <div className={`welcome-message ${isBarMode ? 'bar-mode' : ''}`}>
+      <div className={`welcome-bubble ${isBarMode ? 'bar-mode' : ''}`}>
+        <div className={`welcome-title ${isBarMode ? 'bar-mode' : ''}`}>Hi I'm Figaro.</div>
+        <div className={`welcome-subtitle ${isBarMode ? 'bar-mode' : ''}`}>Ask me Anything!</div>
       </div>
     </div>
   );

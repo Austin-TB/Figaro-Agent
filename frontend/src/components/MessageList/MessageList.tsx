@@ -1,6 +1,5 @@
 import type { Message as MessageType } from '../../types';
 import { Message } from '../Message';
-import { WelcomeMessage } from '../WelcomeMessage';
 import { LoadingMessage } from '../LoadingMessage';
 import './MessageList.css';
 import { useEffect, useRef, useState } from 'react';
@@ -35,19 +34,14 @@ export const MessageList = ({ messages, loading }: MessageListProps) => {
 
   return (
     <div className="message-list">
-      {messages.length === 0 ? (
-        <WelcomeMessage />
-      ) : (
-        messages.map((msg, index) => (
+        {messages.map((msg, index) => (
           <Message 
             key={msg.id} 
             message={msg} 
             isNew={isNewMessage(index)}
             isTyping={loading && index === messages.length - 1}
           />
-        ))
-      )}
-      
+        ))}
       {loading && <LoadingMessage />}
       <div ref={messagesEndRef} />
     </div>

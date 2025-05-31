@@ -1,5 +1,5 @@
 import './App.css';
-import { MessageList, ChatInput } from './components';
+import { MessageList, ChatInput, WelcomeMessage } from './components';
 import { useChat } from './hooks/useChat';
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
 
   return (
     <div className="app">
+      <WelcomeMessage noMessages={messages.length === 0} />
       <MessageList messages={messages} loading={loading} />
       <ChatInput 
         input={input}

@@ -1,9 +1,17 @@
 .welcome-message {
+  margin-top: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
   padding: 2rem;
+  transition: padding 2s ease;
+  height: max-content;
+  transition: margin-top 0.3s ease;
+}
+
+.welcome-message.bar-mode {
+  margin-top: 0;
+  padding: 0;
 }
 
 .welcome-bubble {
@@ -12,17 +20,41 @@
   border-radius: 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 300px;
+  height: 300px;
+  width: 600px;
+  transition: all 0.3s ease;
+}
+
+.welcome-bubble.bar-mode {
+  margin: 32px 0;
+  height: 80px;
+  width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: width 0.3s ease;
 }
 
 .welcome-title {
-  font-size: 1.1rem;
+  font-size: 4.1rem;
   font-weight: 600;
-  color: #333;
+  color: #4ca362;
   margin-bottom: 0.5rem;
 }
 
+.welcome-title.bar-mode {
+  font-size: 1.1rem;
+}
+
 .welcome-subtitle {
-  font-size: 0.9rem;
+  font-size: 1.9rem;
   color: #666;
-} 
+  opacity: 1;
+  max-height: 2rem;
+  /* overflow: hidden; */
+  transition: opacity 0.3s ease, max-height 0.3s ease, margin-bottom 0.3s ease;
+}
+
+.welcome-subtitle.bar-mode {
+  opacity: 0;
+  max-height: 0;
+  margin-bottom: 0;
+}
