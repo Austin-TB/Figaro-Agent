@@ -5,7 +5,7 @@ import time
 print("Current working directory:", os.getcwd())
 
 # Start backend as a background process
-print("\n------------------------------Figaro Backend------------------------------")
+print("\n------------------------------Rae Backend------------------------------")
 backend_process = subprocess.Popen(['python', 'backend/backend.py'])
 
 # Optional: wait a bit to let backend initialize

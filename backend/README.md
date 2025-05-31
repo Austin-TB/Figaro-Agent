@@ -1,6 +1,6 @@
-# Figaro AI Assistant
+# Rae AI Assistant
 
-A modern, full-stack AI assistant application with a clean, interactive web interface. Figaro combines the power of LangGraph with multiple AI tools and services to provide comprehensive assistance across various domains.
+A modern, full-stack AI assistant application with a clean, interactive web interface. Rae combines the power of LangGraph with multiple AI tools and services to provide comprehensive assistance across various domains.
 
 ## 🌟 Features
 
@@ -109,7 +109,7 @@ The frontend will be available at `http://localhost:5173`
 ## 📁 Project Structure
 
 ```
-figaro-agent/
+rae-agent/
 ├── my_agent.py              # Main AI agent implementation
 ├── backend.py               # FastAPI backend server
 ├── app.py                   # Original Gradio interface (legacy)

@@ -1,6 +1,6 @@
-# Figaro Frontend
+# Rae Frontend
 
-A modern, clean, and interactive chat interface for the Figaro AI Assistant.
+A modern, clean, and interactive chat interface for the Rae AI Assistant.
 
 ## Features
 

@@ -1,4 +1,4 @@
-"""FastAPI Backend for Figaro Chatbot"""
+"""FastAPI Backend for Rae Chatbot"""
 import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -8,19 +8,19 @@ from langchain_core.messages import HumanMessage, AIMessage, BaseMessage
 from my_agent import build_agent
 import uvicorn
 
-app = FastAPI(title="Figaro Chat API", version="1.0.0")
+app = FastAPI(title="Rae Chat API", version="1.0.0")
 
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your frontend URL
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 class ChatMessage(BaseModel):
-    role: str  # "user" or "assistant"
+    role: str
     content: str
     timestamp: str = None
 
@@ -64,22 +64,17 @@ def convert_to_langchain_messages(history: List[ChatMessage]) -> List[BaseMessag
 
 @app.get("/")
 async def root():
-    return {"message": "Figaro Chat API is running!"}
+    return {"message": "Rae Chat API is running!"}
 
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     try:
-        # # Convert conversation history to LangChain format
-        # langchain_history = convert_to_langchain_messages(request.conversation_history)
-        
-        # # Add the new user message
-        # langchain_history.append(HumanMessage(content=request.message))
-        
-        # # Get response from agent
-        # response_content = agent(langchain_history)
-        
-        # return ChatResponse(response=response_content)
-        return ChatResponse(response="This is a placeholder response.")
+        langchain_history = convert_to_langchain_messages(request.conversation_history)
+        langchain_history.append(HumanMessage(content=request.message))
+        response_content = agent(langchain_history)
+
+        return ChatResponse(response=response_content)
+        # return ChatResponse(response="Henlo")
         
     except Exception as e:
         print(f"Error in chat endpoint: {str(e)}")
@@ -90,7 +85,7 @@ async def health_check():
     return {"status": "healthy"}
 
 if __name__ == "__main__":
-    print("\n" + "-"*30 + "Figaro Backend" + "-"*30)
+    print("\n" + "-"*30 + "Rae Backend" + "-"*30)
     server_host = os.getenv("BACKEND_HOST", "0.0.0.0")
     server_port = int(os.getenv("BACKEND_PORT", "8000"))
     uvicorn.run(app, host=server_host, port=server_port, log_level="info") 

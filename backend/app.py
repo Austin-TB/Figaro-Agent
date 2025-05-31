@@ -38,7 +38,7 @@ with gr.Blocks(css_paths="./style.css") as demo:
         agent_response,
         chatbot=gr.Chatbot(height=600, type='messages', elem_id="chatbot-container"),
         textbox=gr.Textbox(placeholder="Ask a question...", container=False, scale=7, elem_id="textbox-container"),
-        title="Figaro",
+        title="Rae",
         description="Making it work",
         examples=[["Explain this youtube video: https://www.youtube.com/watch?v=Qw6b1a2d3e4"],["what is the Capital of France?"]],
         cache_examples=False,
@@ -47,7 +47,7 @@ with gr.Blocks(css_paths="./style.css") as demo:
     )
 
 if __name__ == "__main__":
-    print("\n" + "-"*30 + "Figaro" + "-"*30)
+    print("\n" + "-"*30 + "Rae" + "-"*30)
     server_name = os.getenv("GRADIO_SERVER_NAME", "0.0.0.0")
     server_port = int(os.getenv("GRADIO_SERVER_PORT", "7860"))
     enable_debug = os.getenv("GRADIO_DEBUG", "False").lower() == "true"

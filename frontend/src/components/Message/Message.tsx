@@ -34,7 +34,7 @@ export const Message = ({ message, isNew = false, isTyping = false }: MessagePro
   return (
     <div className={messageClass}>
       <div className="message__header">
-        {message.role === 'user' ? 'You' : 'Figaro'}
+        {message.role === 'user' ? 'You' : 'Rae'}
       </div>
       <div className="message__content">
         <ReactMarkdown 
